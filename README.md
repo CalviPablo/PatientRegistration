@@ -13,7 +13,8 @@ El proyecto esta configurado en el entorno de desarrollo Docker.
 
 ## Entorno de desarrollo - Setup
 
-1. Clonar proyecto: git clone https://github.com/CalviPablo/PatientRegistration.git
+1. Clonar proyecto
+- `git clone https://github.com/CalviPablo/PatientRegistration.git` 
 2. Instalar las dependencias
 - `composer install` 
 3. Crear el archivo de variables de entorno: cp .env.example .env
