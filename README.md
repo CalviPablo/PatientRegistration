@@ -14,15 +14,18 @@ El proyecto esta configurado en el entorno de desarrollo Docker.
 ## Entorno de desarrollo - Setup
 
 1. Clonar proyecto: git clone https://github.com/CalviPablo/PatientRegistration.git
-2. Instalar las dependencias: composer install
+2. Instalar las dependencias
+- `composer install` 
 3. Crear el archivo de variables de entorno: cp .env.example .env
-4. Levantar los contenedores: sail up --build
+- `cp .env.example .env` 
+4. Levantar los contenedores: 
+- `sail up --build`
 5. Acceder al contenedor de sail para correr las migraciones de las tablas de la BD: docker exec -it <Numero de contenedor> bash
+- `docker exec -it <Numero de contenedor> bash`
 6. Correr las migraciones: php artisan migrate
-7. Probar la API a traves de Postman
-
+- `php artisan migrate`
+7. Probar la API a traves de Postman, en el siguiente link esta la documentacion de Postman.
+[PostmanAPI](https://documenter.getpostman.com/view/16444122/2s9YRCVqxs)
 ## Troubleshooting
 1. En caso de no poder instalar las dependencias correr el comando: composer install --ignore-platform-req
 
-// viñeta
-- `docker-compose exec db mysql -u root -p` 
