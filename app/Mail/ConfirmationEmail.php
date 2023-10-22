@@ -28,7 +28,7 @@ class ConfirmationEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Test Confirmation Email',
+            subject: 'Confirm user creation.',
         );
     }
 
@@ -38,7 +38,7 @@ class ConfirmationEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.test-email',
+            view: 'mail.user-confirmation',
         );
     }
 

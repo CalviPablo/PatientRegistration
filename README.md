@@ -2,6 +2,7 @@
 
 ## Descripcion del proyecto
 
+
 ## Requisitos para la instalacion
 1. Tener git instalado.
 2. Tener docker instalado.
@@ -12,9 +13,10 @@
 1. Clonar proyecto: git clone https://github.com/CalviPablo/PatientRegistration.git
 2. Instalar las dependencias: composer install
 3. Crear el archivo de variables de entorno: cp .env.example .env
-4. Levantar los contenedores: docker compose up -d
-5. Acceder al contenedor de sail para correr las migraciones de las tablas de la BD: 
-6. Configurar la base de datos: php artisan migrate|
+4. Levantar los contenedores: sail up --build
+5. Acceder al contenedor de sail para correr las migraciones de las tablas de la BD: docker exec -it <Numero de contenedor> bash
+6. Correr las migraciones: php artisan migrate
+7. Probar la API a traves de Postman
 
 ## Troubleshooting
 1. En caso de no poder instalar las dependencias correr el comando: composer install --ignore-platform-req
