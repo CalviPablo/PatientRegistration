@@ -7,6 +7,9 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
+
+use function PHPUnit\Framework\isNull;
 
 class PatientController extends Controller
 {
@@ -31,44 +34,49 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:patients,email',
-            'phone_number' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png'
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email|unique:patients,email',
+                'phone_number' => 'required|string',
+                'image' => 'required|image|mimes:jpeg,png'
+            ]);
 
-        if (!$request->hasFile('image') || !$request->file('image')->isValid()) {
-            return response()->json(['error' => 'Invalid image upload'], 400);
+            if (!$request->hasFile('image') || !$request->file('image')->isValid()) {
+                return response()->json(['error' => 'Invalid image upload'], 400);
+            }
+            
+    
+            $patient = new Patient();
+            $patient->name = $request->input('name');
+            $patient->email = $request->input('email');
+            $patient->phone_number = $request->input('phone_number');
+    
+            // Lo guarda en storage/app/public/images/download
+            $imagePath = $request->file('image')->store('images', 'public');
+
+            $patient->image = $imagePath;
+
+            // Envia un mail usando MailTrap
+            Mail::to($patient->email)->send(new ConfirmationEmail($patient));
+            $patient->save();
+    
+            return response()->json(['success' => true, 'message' => 'Patient created successfully', 'patient' => $patient], 201);
+        } catch (ValidationException $th) {
+            return response()->json(['success' => false, 'errorMessages' => $th->errors()], 400);
         }
-
-        $patient = new Patient();
-        $patient->name = $request->input('name');
-        $patient->email = $request->input('email');
-        $patient->phone_number = $request->input('phone_number');
-
-        // Lo guarda en storage/app/public/images/download
-        $image = $request->file('image')->store('');
-
-        $patient->image = $image;
-
-        // Envia un mail usando MailTrap
-        Mail::to($patient->email)->send(new ConfirmationEmail($patient));
-        $patient->save();
-
-        return response()->json(['message' => 'Patient created successfully', 'patient' => $patient], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Patient $patient)
+    public function show($id)
     {
-        if (!$patient) return response()->json(['error' => 'Patient not found'], 404);
-        $image = $patient->image;
-        $patient->image = asset($image);
-        
-        return response()->json($patient);
+        $patient = Patient::find($id);
+        if (!$patient) {
+            return response()->json(['success' => false, 'errorMessages' => 'Patient not found'], 404);
+        }
+        return response()->json(['success' => true, 'patient' => $patient], 201);
     }
 
     /**
