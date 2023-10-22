@@ -19,7 +19,7 @@ class ConfirmationEmail extends Mailable
      */
     public function __construct($patient)
     {
-        $this ->patient = $patient;
+        $this->patient = $patient;
     }
 
     /**

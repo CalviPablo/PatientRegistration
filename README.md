@@ -1,6 +1,9 @@
 # Patient Registration Backend - LightIT
 
 ## Descripcion del proyecto
+El objetivo de este proyecto es crear una aplicación de registro de pacientes utilizando el framework Laravel.
+La aplicacion proporciona una API para el registro, valida los datos ingresados por el usuario y los guarda en una base de datos, y envia un correo de confirmacion.
+El proyecto esta configurado en el entorno de desarrollo Docker.
 
 
 ## Requisitos para la instalacion
@@ -20,31 +23,6 @@
 
 ## Troubleshooting
 1. En caso de no poder instalar las dependencias correr el comando: composer install --ignore-platform-req
-// Link 
-[Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file)
 
 // viñeta
 - `docker-compose exec db mysql -u root -p` 
-
-//Command box with copy
-```
-docker-compose up -d
-```
-
-npm install --save babel-runtime
-
-
-#	h1
-##	h2
-#####	h5
-*Text* | _Text_	Italic
-**text** | __text__	Bold
-``` javascript
-console.log(foo(5));
-```	Code
-[name](http:/www....)	Link
-![name](http:/www....)	Image
-+ Item 1
-+ Item 2	List
-<ins>Text</ins>	Underline
-<br>	Enter
