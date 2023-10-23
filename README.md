@@ -28,5 +28,5 @@ El proyecto esta configurado en el entorno de desarrollo Docker.
 7. Probar la API a traves de Postman, en el siguiente link esta la documentacion de Postman.
 [PostmanAPI](https://documenter.getpostman.com/view/16444122/2s9YRCVqxs)
 ## Troubleshooting
-1. En caso de no poder instalar las dependencias correr el comando: composer install --ignore-platform-req
+1. En caso de no poder instalar las dependencias correr el comando: composer install --ignore-platform-reqs
 
