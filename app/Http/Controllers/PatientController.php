@@ -53,7 +53,7 @@ class PatientController extends Controller {
 
             $patient->image = $imagePath;
 
-            // Envia un mail usando MailTrap
+            // Envia un mail usando MailTrap y luego guarda el paciente
             Mail::to($patient->email)->send(new ConfirmationEmail($patient));
             $patient->save();
 
@@ -126,16 +126,18 @@ class PatientController extends Controller {
      */
     public function destroy($id) {
         try {
+            // Busca al paciente y si no lo encuentra devuelve un mensaje de error
             $patient = Patient::find($id);
-
             if (!$patient) {
                 return response()->json(['success' => false, 'message' => 'Patient not found'], 404);
             }
 
+            // Ruta de la imagen del paciente
             $imagePath = $patient->image;
 
             $patient->delete();
 
+            // Si el paciente tiene imagen la borra
             if ($patient->image) {
                 Storage::disk('public')->delete($patient->image);
             }
