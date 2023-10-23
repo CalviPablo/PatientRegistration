@@ -17,9 +17,9 @@ El proyecto esta configurado en el entorno de desarrollo Docker.
 - `git clone https://github.com/CalviPablo/PatientRegistration.git` 
 2. Instalar las dependencias
 - `composer install` 
-3. Crear el archivo de variables de entorno: cp .env.example .env
+3. Crear el archivo de variables de entorno
 - `cp .env.example .env` 
-4. Levantar los contenedores: 
+4. Levantar los contenedores
 - `sail up --build`
 5. Acceder al contenedor de sail para correr las migraciones de las tablas de la BD: docker exec -it <Numero de contenedor> bash
 - `docker exec -it <Numero de contenedor> bash`
