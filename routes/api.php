@@ -20,8 +20,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Patients routes
-Route::get('/patients', [PatientController::class, 'index']);
-Route::get('/patients/{patient}', [PatientController::class, 'show']);
-Route::post('/patients', [PatientController::class,'store']);
-Route::put('/patients/{patient}', [PatientController::class,'update']);
-Route::delete('/patients/{patient}', [PatientController::class,'destroy']);
+Route::prefix('patients')->group(function () {
+    Route::get('/', [PatientController::class, 'index']);
+    Route::get('/{patient}', [PatientController::class, 'show']);
+    Route::post('/', [PatientController::class, 'store']);
+    Route::put('/{patient}', [PatientController::class, 'update']);
+    Route::delete('/{patient}', [PatientController::class, 'destroy']);
+});
