@@ -1,4 +1,4 @@
-# Patient Registration Backend Challenge - LightIT
+# Patient Registration Backend Challenge
 
 ## Descripcion del proyecto
 El objetivo de este proyecto es crear una aplicación de registro de pacientes utilizando el framework Laravel.
